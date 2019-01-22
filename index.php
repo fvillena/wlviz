@@ -12,6 +12,7 @@ if (!isset($_GET["specialty"])) {
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <style>
     canvas {
         padding-left: 0;
@@ -27,37 +28,40 @@ if (!isset($_GET["specialty"])) {
       text-align: center;
     }
     </style>
-    <title></title>
+    <title><?php echo urldecode($_GET["specialty"]); ?></title>
   </head>
-  <body>
-    <h1><?php echo urldecode($_GET["specialty"]); ?></h1>
-    <div id="sourrounding_div" style="width:100%;height:500px">
-    <canvas id="my_canvas" class="my_canvas" width=1000 height=500></canvas>
-    </div><br>
-    <form class="" action="index.php" method="get">
-      <select class="" name="specialty">
-        <?php
-        foreach($files as $item) {
-            $item = strtolower($item);
-            $item = pathinfo($item, PATHINFO_FILENAME);
-            if ($_GET["specialty"] == strtoupper($item) ){
-              $selected = "selected";
-            }
-            else {
-              $selected = "";
-            }
-            echo "<option ".$selected." value=".rawurlencode(strtoupper($item)).">".$item."</option>";
-        }
-         ?>
-      </select>
-      <input type="submit" name="" value="ir">
-    </form>
+  <body class="container">
+    <h1 class="display-1"><?php echo urldecode($_GET["specialty"]); ?></h1>
+    <div class="jumbotron">
 
+    <div id="sourrounding_div" style="width:100%;height:400px">
+    <canvas id="my_canvas" class="my_canvas"></canvas>
+    </div><br>
+
+
+  </div>
+  <form class="form-inline justify-content-center" action="index.php" method="get">
+    <select class="form-control form-control-lg" name="specialty" onchange='this.form.submit();'>
+      <?php
+      foreach($files as $item) {
+          $item = strtolower($item);
+          $item = pathinfo($item, PATHINFO_FILENAME);
+          if (urldecode($_GET["specialty"]) == strtoupper($item) ){
+            $selected = "selected";
+          }
+          else {
+            $selected = "";
+          }
+          echo "<option ".$selected." value=".rawurlencode(strtoupper($item)).">".$item."</option>";
+      }
+       ?>
+    </select>
+
+  </form><br>
   </body>
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   <script src="wordcloud2.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
@@ -73,9 +77,17 @@ canvas.width  = div.offsetWidth;
 
       WordCloud(document.getElementById('my_canvas'), {
         list: list,
-        drawOutOfBound: true,
-        minRotation: 0,
-        maxRotation: 0
+        drawOutOfBound: false,
+        // minRotation: 0,
+        // maxRotation: 0,
+        backgroundColor: '#e9ecef',
+        color: function (word, size) {
+    return (size > 99) ? '#007bff' : '#6c757d';
+  },
+  weightFactor: function (size) {
+    return Math.log(size) * 20  ;
+  },
+  gridSize: 20
 
 
       } );

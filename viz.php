@@ -80,7 +80,7 @@ canvas.width  = div.offsetWidth;
     return (size > 99) ? '#007bff' : '#6c757d';
   },
   weightFactor: function (size) {
-    return Math.log(size) * 20 *$('#my_canvas').width()/1000  ;
+    return Math.log(size) * 20 *$('#my_canvas').width()/1200  ;
   },
   gridSize: 20
 

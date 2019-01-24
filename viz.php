@@ -11,12 +11,24 @@ if (!isset($_GET["specialty"])) {
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
+    <style>
+    h1{
+     word-wrap: break-word;
+     -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+     -ms-hyphens: auto;
+     -o-hyphens: auto;
+     hyphens: auto;
+}
+
+    </style>
     <?php include("header.php"); ?>
     <title><?php echo urldecode($_GET["specialty"]); ?></title>
   </head>
-  <body class="container">
-    <h1 class="display-1"><?php echo urldecode($_GET["specialty"]); ?></h1>
+  <body class="container-fluid">
+    <h1 class=""><?php echo urldecode($_GET["specialty"]); ?></h1>
     <div class="jumbotron">
 
     <div id="sourrounding_div" style="width:100%;height:400px">
@@ -68,7 +80,7 @@ canvas.width  = div.offsetWidth;
     return (size > 99) ? '#007bff' : '#6c757d';
   },
   weightFactor: function (size) {
-    return Math.log(size) * 20  ;
+    return Math.log(size) * 20 *$('#my_canvas').width()/1000  ;
   },
   gridSize: 20
 

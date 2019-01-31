@@ -1,0 +1,1 @@
+[['arritmia', 100], ['dislipidemia', 78], ['arterial', 77], ['hipertension', 77], ['cardiaca', 77]]

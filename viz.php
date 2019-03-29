@@ -54,7 +54,11 @@ if (!isset($_GET["specialty"])) {
        ?>
     </select>
 
-  </form><br>
+  </form>
+  <hr>
+  Desarrollado por Fabián Villena y Jocelyn Dunstan<br>
+  Centro de Informática Médica y Telemedicina<br>
+  Universidad de Chile<br>
   <?php include("footer.php") ?>
   </body>
 

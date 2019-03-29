@@ -56,7 +56,7 @@ if (!isset($_GET["specialty"])) {
 
   </form>
   <hr>
-  Desarrollado por Fabián Villena y Jocelyn Dunstan<br>
+  Desarrollado por <a href="https://fabianvillena.cl">Fabián Villena</a> y <a href="https://sites.google.com/view/jdunstan/home">Jocelyn Dunstan</a><br>
   Centro de Informática Médica y Telemedicina<br>
   Universidad de Chile<br>
   <?php include("footer.php") ?>
